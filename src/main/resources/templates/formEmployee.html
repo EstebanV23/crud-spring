@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title th:text="${title}"></title>
+  <link href="https://api.fontshare.com/v2/css?f[]=plein@401,300,700,501,500,900,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../static/config-tailwind.js"></script>
+  <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="bg-gray-100">
+  <header th:insert="/navegation::navbar"></header>
+  <main class="max-w-[1200px] m-auto">
+    <h1 class="text-5xl font-bold text-center mt-4" th:text="${title}"></h1>
+
+    <div th:object="${employee}" th:remove="tag">
+      <div th:if="${#fields.hasErrors('*')}" role="alert" class="w-full md:w-2/3 mt-10 m-auto">
+        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+          You have errors in your form
+        </div>
+        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+          <ul>
+            <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <form class="w-full md:w-2/3 m-auto mt-10 flex flex-col gap-3" th:action="@{/employee/form}"
+          th:object="${employee}" method="post">
+      <div class="md:mb-0 w-full">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="name">
+          Name of Employee
+        </label>
+        <input th:errorclass="'border-red'"
+               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" th:field="*{name}" type="text" placeholder="Federico">
+        <p class="text-red-500 text-xs italic" th:if="${#fields.hasErrors('name')}"
+           th:errors="*{name}">The name is
+          required</p>
+      </div>
+      <div class="md:mb-0 w-full">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="email">
+          Email of Employee
+        </label>
+        <input th:errorclass="'border-red'"
+               class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" th:field="*{email}" type="text" placeholder="Youremail@domain.com">
+        <p class="text-red-500 text-xs italic" th:if="${#fields.hasErrors('email')}"
+           th:errors="*{email}">The email is
+          required</p>
+      </div>
+      <div class="relative">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="personalComputer">
+          Personal Computer
+        </label>
+        <select th:field="*{personalComputer}" th:errorclass="'border-red'" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="personalComputer">
+          <option value="">Choose pc</option>
+          <option th:each="personalComputer : ${personalComputers}" th:value="${personalComputer.getId()}"
+                  th:text="${personalComputer.getId() + ' - ' + personalComputer.getModel() + ':' + personalComputer.getSerialNumber()}" th:selected="${personalComputer.getId().equals(employee.getPersonalComputer().getId())}"></option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-3">
+        <input type="submit" value="Submit" class="bg-gray-500 hover:bg-green-700 text-white w-full text-center transition-all cursor-pointer ease-in-out duration-300 font-bold py-2 px-4 rounded">
+        <a th:href="@{/employee/listar}"
+           class="bg-red-500 hover:bg-red-700 text-white w-full text-center transition-all cursor-pointer ease-in-out duration-300 font-bold py-2 px-4 rounded">Cancel</a>
+      </div>
+    </form>
+  </main>
+</body>

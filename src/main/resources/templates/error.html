@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Not Found</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../static/config-tailwind.js"></script>
+  <link href="https://api.fontshare.com/v2/css?f[]=plein@401,300,700,501,500,900,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+  <header th:insert="/navegation::navbar"></header>
+  <section class="grid place-items-center w-full h-[calc(100vh-80px)] bg-gray-100">
+    <div class="text-center flex flex-col gap-3">
+      <h1 class="font-bold text-6xl">404</h1>
+      <h2 class="font-bold text-3xl">Te has perdido?</h2>
+      <h2 class="font-bold text-2xl">Presiona el link para volver</h2>
+      <a th:href="@{/}"
+         class="p-2 bg-gray-300 px-6 rounded text-slate-700 font-medium transition-all ease-in-out block text-center w-full duration-500 hover:bg-gray-200 hover:text-slate-800">Volver</a>
+    </div>
+  </section>
+</body>
+</html>

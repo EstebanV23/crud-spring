@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title th:text="${title}"></title>
+  <link href="https://api.fontshare.com/v2/css?f[]=plein@401,300,700,501,500,900,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../static/config-tailwind.js"></script>
+  <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="bg-gray-100">
+<header th:insert="/navegation::navbar"></header>
+<main class="max-w-[1200px] m-auto">
+  <h1 class="text-5xl font-bold text-center mt-4 mb-10" th:text="${title}"></h1>
+  <section>
+    <a th:href="@{/supplier/form}"
+       class="py-2 block w-fit px-4 rounded bg-green-700 bg-opacity-25 hover:bg-opacity-50 transition-all ease-in-out duration-300 text-green-700 mb-3">New
+      Supplier</a>
+    <div class="shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Supplier id
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Supplier Name
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Edit / Delete
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="supplier: ${suppliers}" class="bg-white border-b hover:bg-gray-50">
+          <th scope="row" th:text="${supplier.getId()}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"></th>
+          <th scope="row" th:text="${supplier.getName()}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"></th>
+          <td class="px-6 py-4 flex gap-3 items-center">
+            <a th:href="@{/supplier/form/} + ${supplier.getId()}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            <a th:href="@{/supplier/eliminar/} + ${supplier.getId()}" onclick="return confirm('Are you sure that you want to delete it?');" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+</body>

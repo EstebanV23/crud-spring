@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello people</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=plein@401,300,700,501,500,900,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../static/config-tailwind.js"></script>
+  <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="bg-gray-100">
+  <header th:insert="/navegation::navbar"></header>
+  <main class="max-w-[1200px] m-auto mt-10">
+    <h1 class="font-bold text-5xl text-center">What do you wish to do?</h1>
+    <aside class="mt-4 grid grid-cols-4 gap-4 w-full md:w-3/4 m-auto">
+      <a th:href="@{/company/listar}"
+         class="p-6 bg-gray-200 px-8 rounded shadow-lg text-green-600 font-medium transition-all ease-in-out block text-center w-full duration-500 hover:bg-gray-100 hover:text-green-700">
+        <div>
+          <p class="text-lg">Companies</p>
+          <p class="text-sm text-gray-600 opacity-75">Add, remove, edit and list any company</p>
+        </div>
+      </a>
+      <a th:href="@{/supplier/listar}"
+         class="p-6 bg-gray-200 px-8 rounded shadow-lg text-green-600 font-medium transition-all ease-in-out block text-center w-full duration-500 hover:bg-gray-100 hover:text-green-700">
+        <div>
+          <p class="text-lg">Suppliers</p>
+          <p class="text-sm text-gray-600 opacity-75">Add, remove, edit and list any supplier</p>
+        </div>
+      </a>
+      <a th:href="@{/personalComputer/listar}"
+         class="p-6 bg-gray-200 px-8 rounded shadow-lg text-green-600 font-medium transition-all ease-in-out block text-center w-full duration-500 hover:bg-gray-100 hover:text-green-700">
+        <div>
+          <p class="text-lg">Personal Computers</p>
+          <p class="text-sm text-gray-600 opacity-75">Add, remove, edit and list any personal computer</p>
+        </div>
+      </a>
+      <a th:href="@{/owner/listar}"
+         class="p-6 bg-gray-200 px-8 rounded shadow-lg text-green-600 font-medium transition-all ease-in-out block text-center w-full duration-500 hover:bg-gray-100 hover:text-green-700">
+        <div>
+          <p class="text-lg">Owners</p>
+          <p class="text-sm text-gray-600 opacity-75">Add, remove, edit and list any owner</p>
+        </div>
+      </a>
+      <a th:href="@{/employee/listar}"
+         class="p-6 bg-gray-200 px-8 rounded shadow-lg text-green-600 font-medium transition-all ease-in-out block text-center w-full duration-500 hover:bg-gray-100 hover:text-green-700">
+        <div>
+          <p class="text-lg">Employee</p>
+          <p class="text-sm text-gray-600 opacity-75">Add, remove, edit and list any employee</p>
+        </div>
+      </a>
+    </aside>
+  </main>
+</body>

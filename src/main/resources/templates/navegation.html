@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <nav th:fragment="navbar" class="w-full bg-green-500">
+    <section class="max-w-[1200px] m-auto">
+      <div class="flex justify-between items-center py-4">
+        <a th:href="@{/}" class="text-white text-4xl font-bold">EV</a>
+        <div class="flex gap-3">
+          <a th:href="@{/}" class="p-1 px-5 bg-green-700 bg-opacity-50 rounded text-white">Home</a>
+          <a th:href="@{/company/listar}" class="p-1 px-5 bg-green-700 bg-opacity-50 rounded text-white">Company</a>
+          <a th:href="@{/supplier/listar}" class="p-1 px-5 bg-green-700 bg-opacity-50 rounded text-white">Supplier</a>
+          <a th:href="@{/personalComputer/listar}" class="p-1 px-5 bg-green-700 bg-opacity-50 rounded text-white">Personal Computer</a>
+          <a th:href="@{/owner/listar}" class="p-1 px-5 bg-green-700 bg-opacity-50 rounded text-white">Owner</a>
+          <a th:href="@{/employee/listar}" class="p-1 px-5 bg-green-700 bg-opacity-50 rounded text-white">Employee</a>
+        </div>
+      </div>
+    </section>
+  </nav>
+</body>
